@@ -7,7 +7,7 @@
 - 定时调度接口
 - 定时抽取数据 等场景使用
 
-Quartz.net实现的调度在本人的另一开源地址[Quartz任务配置以及日志记录](https://gitee.com/xmsource/quartz.git)
+Quartz.net实现的调度在本人的另一开源地址[Quartz定时执行任务](https://gitee.com/xmsource/quartz.git)
 
 该项目涉及的技术：
 1. 调度配置工具
