@@ -100,8 +100,9 @@ namespace Raise.Monitor {
                 MessageBoxEx.Show(this, "Webservice or restful is required", "Remind Infomation", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
+            var config = this.Tag as RuleConfig;
             var ruleConfig = new RuleConfig();
+            ruleConfig.Id = config.Id;
             ruleConfig.ServiceName = methodName;
             ruleConfig.Cron = cron;
             ruleConfig.Description = description;
@@ -115,11 +116,11 @@ namespace Raise.Monitor {
             ruleConfig.Password = password;
             ruleConfig.GroupName = groupName;
             ruleConfig.Address = url;
-            ruleConfig.Status = (int)BasicStatus.有效;
-            ruleConfig.RunStatus = (int)RunStatus.停用;
+            ruleConfig.RunStatus = config?.RunStatus ?? (int)RunStatus.停用;
+            ruleConfig.Status = config?.Status ?? (int)BasicStatus.有效;
             ruleConfig.IsWebService = rbWebService.Checked ? (int)YesOrNo.是 : (int)YesOrNo.否;
             this.IsLoading = true;
-            var msg = ServiceUtils.InsertRule(ruleConfig);
+            var msg = ServiceUtils.SaveChanges(ruleConfig);
             MessageBoxEx.Show(this, msg.Message);
             this.IsLoading = true;
         }
@@ -201,6 +202,8 @@ namespace Raise.Monitor {
             var config = this.Tag as RuleConfig;
             var ruleConfig = new RuleConfig();
             ruleConfig.Cron = cron;
+            ruleConfig.Id = config.Id;
+            ruleConfig.ServiceName = methodName;
             ruleConfig.Description = description;
             ruleConfig.TriggerName = triggerName;
             ruleConfig.JobName = jobName;

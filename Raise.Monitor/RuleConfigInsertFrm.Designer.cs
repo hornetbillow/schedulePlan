@@ -55,6 +55,7 @@
             this.rbWebService = new System.Windows.Forms.RadioButton();
             this.rbRestful = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnSelect = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -371,11 +372,22 @@
             this.panel1.Size = new System.Drawing.Size(272, 32);
             this.panel1.TabIndex = 35;
             // 
+            // btnSelect
+            // 
+            this.btnSelect.Image = global::Raise.Monitor.Properties.Resources.image12;
+            this.btnSelect.Location = new System.Drawing.Point(625, 359);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.Size = new System.Drawing.Size(23, 23);
+            this.btnSelect.TabIndex = 36;
+            this.btnSelect.UseVisualStyleBackColor = true;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
+            // 
             // RuleConfigInsertFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(910, 642);
+            this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txbGroupName);
@@ -452,5 +464,6 @@
         private System.Windows.Forms.RadioButton rbRestful;
         private System.Windows.Forms.RadioButton rbWebService;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnSelect;
     }
 }

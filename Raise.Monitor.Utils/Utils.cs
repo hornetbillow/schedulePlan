@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -12,6 +13,7 @@ using System.Text.RegularExpressions;
 using System.Xml;
 using Oracle.ManagedDataAccess.Client;
 using Quartz;
+using Quartz.Spi;
 
 namespace Raise.Monitor.Tools {
     public static class Utils {
@@ -28,7 +30,35 @@ namespace Raise.Monitor.Tools {
                     throw new KeyNotFoundException("配置文件中，ConnectionString配置节未找到，请重新配置");
 
                 return queueName.ToString();
+        }
+
+        /// <summary>
+        /// 获取任务在未来周期内哪些时间会运行
+        /// </summary>
+        /// <param name="cronExpression">Cron表达式</param>
+        /// <param name="numTimes">运行次数</param>
+        /// <returns>运行时间段</returns>
+        public static List<string> GetTaskeFireTime(string cronExpression, int numTimes = 50) {
+            if(numTimes < 0) {
+                throw new Exception("参数numTimes值大于等于0");
             }
+            //时间表达式
+            ITrigger trigger = TriggerBuilder.Create().WithCronSchedule(cronExpression).Build();
+            var dates = TriggerUtils.ComputeFireTimes(trigger as IOperableTrigger, null, numTimes);
+            List<string> list = new List<string>();
+            foreach(DateTimeOffset dtf in dates) {
+                list.Add(TimeZoneInfo.ConvertTimeFromUtc(dtf.DateTime, TimeZoneInfo.Local).ToString(CultureInfo.InvariantCulture));
+            }
+            return list;
+        }
+
+        /// <summary>
+        /// 判断输入的字符串是否是int类型
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns>返回判断结果</returns>
+        public static bool IsInt(string value) {
+            return Regex.IsMatch(value, @"^[+-]?\d*$");
         }
 
         /// <summary>

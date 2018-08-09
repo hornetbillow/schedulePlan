@@ -111,5 +111,11 @@ namespace Raise.Monitor {
             frm.EditSubmitted += Frm_EditSubmitted;
             frm.Show();
         }
+
+        private void tsmiCronExpression_Click(object sender, EventArgs e) {
+            var frm = new CronExpressionFrm();
+            frm.MdiParent = this;
+            frm.Show();
+        }
     }
 }

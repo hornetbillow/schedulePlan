@@ -202,5 +202,11 @@ namespace Raise.Monitor {
             var msg = HttpUtils.PostWebServiceWithoutCredential(ruleConfig.Address, ruleConfig.PostBody);
             MessageBoxEx.Show(this, msg.Message, "Remind Infomation", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void btnSelect_Click(object sender, EventArgs e) {
+            var frm = new CronExpressionFrm();
+            frm.MdiParent = this.MdiParent;
+            frm.Show();
+        }
     }
 }

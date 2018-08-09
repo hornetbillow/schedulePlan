@@ -49,11 +49,12 @@
             this.tsbLogInfo = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonStartService = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.tsbOtherLog = new System.Windows.Forms.ToolStripButton();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslInformation = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.tsbOtherLog = new System.Windows.Forms.ToolStripButton();
+            this.tsmiCronExpression = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -123,7 +124,8 @@
             // toolsMenu
             // 
             this.toolsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.optionsToolStripMenuItem});
+            this.optionsToolStripMenuItem,
+            this.tsmiCronExpression});
             this.toolsMenu.Name = "toolsMenu";
             this.toolsMenu.Size = new System.Drawing.Size(59, 21);
             this.toolsMenu.Text = "工具(&T)";
@@ -131,7 +133,7 @@
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.optionsToolStripMenuItem.Text = "选项(&O)";
             // 
             // windowsMenu
@@ -268,6 +270,15 @@
             this.toolStripButton1.Text = "关闭调度";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
+            // tsbOtherLog
+            // 
+            this.tsbOtherLog.Image = global::Raise.Monitor.Properties.Resources.image6;
+            this.tsbOtherLog.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbOtherLog.Name = "tsbOtherLog";
+            this.tsbOtherLog.Size = new System.Drawing.Size(100, 22);
+            this.tsbOtherLog.Text = "其他日志查看";
+            this.tsbOtherLog.Click += new System.EventHandler(this.tsbOtherLog_Click);
+            // 
             // statusStrip
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -291,14 +302,12 @@
             this.tsslInformation.Size = new System.Drawing.Size(325, 17);
             this.tsslInformation.Text = "Resfule API 或者 基于SOAP的WebService调度配置控制台";
             // 
-            // tsbOtherLog
+            // tsmiCronExpression
             // 
-            this.tsbOtherLog.Image = global::Raise.Monitor.Properties.Resources.image6;
-            this.tsbOtherLog.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbOtherLog.Name = "tsbOtherLog";
-            this.tsbOtherLog.Size = new System.Drawing.Size(100, 22);
-            this.tsbOtherLog.Text = "其他日志查看";
-            this.tsbOtherLog.Click += new System.EventHandler(this.tsbOtherLog_Click);
+            this.tsmiCronExpression.Name = "tsmiCronExpression";
+            this.tsmiCronExpression.Size = new System.Drawing.Size(172, 22);
+            this.tsmiCronExpression.Text = "CRON表达式配置";
+            this.tsmiCronExpression.Click += new System.EventHandler(this.tsmiCronExpression_Click);
             // 
             // MainForm
             // 
@@ -355,6 +364,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonStartService;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton tsbOtherLog;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCronExpression;
     }
 }
 

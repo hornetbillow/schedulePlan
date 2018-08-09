@@ -29,6 +29,7 @@ namespace Raise.Monitor {
             this.dataGridView.CellFormatting += DgvLogInfo_CellFormatting;
             this.contextMenuStrip.ItemClicked += ContextMenuStrip_ItemClicked;
             this.dataGridView.CellMouseDown += DataGridView_CellMouseDown;
+            this.dataGridView.Columns[7].Frozen = true;
         }
 
         private void DataGridView_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e) {
@@ -107,7 +108,7 @@ namespace Raise.Monitor {
             this.dateTimePickerEnd.Value = DateTime.Now.AddDays(1);
             this.dataGridView.Height = this.Height - this.gbCondition.Height - this.pageControlPanel.Height - 90;
             this.dataGridView.Width = this.Width - 50;
-            this.dataGridView.ScrollBars = ScrollBars.Vertical;
+            this.dataGridView.ScrollBars = ScrollBars.Both;
             this.pageControlPanel.Location = new Point(this.dataGridView.Location.X, this.dataGridView.Location.Y + this.dataGridView.Height);
             this.pageControlPanel.Width = this.dataGridView.Width;
             var locationX = this.dataGridView.Width - this.pagerControl.Width - 50;

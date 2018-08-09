@@ -137,6 +137,11 @@ namespace Raise.Monitor.Service {
             DapperDbContext.Execute("Update RuleConfig set RunStatus = :runStatus where Id = :id", new { runStatus, id });
         }
 
+        /// <summary>
+        /// 新增调度配置
+        /// </summary>
+        /// <param name="config">配置</param>
+        /// <returns>保存结果</returns>
         public static MessageInformation InsertRule(RuleConfig config) {
             var messageInformation = new MessageInformation();
             try {
@@ -190,6 +195,49 @@ namespace Raise.Monitor.Service {
                                :RunStatus)";
                 DapperDbContext.Execute(sql, config);
                 messageInformation.ExecuteSuccess("数据插入成功");
+            } catch(Exception e) {
+                messageInformation.ExecuteError(e);
+            }
+            return messageInformation;
+        }
+
+        /// <summary>
+        /// 修改调度配置
+        /// </summary>
+        /// <param name="config">配置</param>
+        /// <returns>保存结果</returns>
+        public static MessageInformation SaveChanges(RuleConfig config) {
+            var messageInformation = new MessageInformation();
+            try {
+                config.UniqueCode = Utils.Guid;
+                var data = DapperDbContext.GetConnection.QueryFirstOrDefault<RuleConfig>(
+                        "Select * from RuleConfig r where (r.jobName = :JobName or triggername = :TriggerName or servicename= :ServiceName) and r.Id <> :Id",
+                        config);
+                if(data != null) {
+                    throw new ValidationException("JobName,TriggerName,MethodName必须唯一");
+                }
+                string sql = @"Update RuleConfig
+                               set Cron             = :Cron,
+                                   Description      = :Description,
+                                   TriggerName      = :TriggerName,
+                                   JobName          = :JobName,
+                                   Method           = :Method,
+                                   PostBody         = :PostBody,
+                                   ServiceName      = :ServiceName,
+                                   Author           = :Author,
+                                   ContentType      = :ContentType,
+                                   IsAuthentication = :IsAuthentication,
+                                   UserName         = :UserName,
+                                   Password         = :Password,
+                                   GroupName        = :GroupName,
+                                   Address          = :Address,
+                                   Status           = :Status,
+                                   IsWebService     = :IsWebService,
+                                   UniqueCode       = :UniqueCode,
+                                   RunStatus        = :RunStatus
+                             where Id = :Id ";
+                DapperDbContext.Execute(sql, config);
+                messageInformation.ExecuteSuccess("数据更新成功");
             } catch(Exception e) {
                 messageInformation.ExecuteError(e);
             }
