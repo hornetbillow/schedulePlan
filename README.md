@@ -96,5 +96,7 @@ Quartz.net实现的调度在本人的另一开源地址[Quartz定时执行任务
 #### 联系我
 - 邮箱：hornet_team@sina.com
 - 交流群：492527782 
+- 工具源码地址：https://gitee.com/xmsource/schedulePlan.git
+- Quartz Windows服务源码地址：https://gitee.com/xmsource/quartz.git
 
 *最近刚创建群，群人数较少，后续会升级为集群方案，如果喜欢，请给个star以及Fork我*
