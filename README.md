@@ -92,3 +92,9 @@ Quartz.net实现的调度在本人的另一开源地址[Quartz定时执行任务
 
 #### 注意事项
 - Devart是收费项目，可以使用Oracle.ManagedDataAccess无缝替代,本项目已经用Oracle.ManagedDataAccess替代，由于Oracle.ManagedDataAccess本身存在的问题，如果商用，建议购买Devart
+
+#### 联系我
+- 邮箱：hornet_team@sina.com
+- 交流群：492527782 
+
+*最近刚创建群，群人数较少，后续会升级为集群方案，如果喜欢，请给个star以及Fork我*
